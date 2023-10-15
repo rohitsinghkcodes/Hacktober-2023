@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="s">
+  <title>LetsNote - makes note taking easy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body id="body">
+
+  <!-- NAV BAR START -->
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><b>📝LetsNote</b></a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+ 
+        </ul>
+        <form class="d-flex" role="search">
+          <button  class="btn"><a  class="nav-link active" aria-current="page" href="/about" target="_blank">About Us</a></button>
+        </form>
+       
+      </div>
+    </div>
+  </nav>
+  <!-- NAV BAR END -->
+
+  <!-- BODY ELEMENTS START -->
+  <div class="row">
+    <div class="column left">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h2>Create new</h2><br>
+
+
+          <!-- NOTES FORM -->
+          <form action="/" method="post">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" name="title" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <input type="text" class="form-control" name="desc" aria-describedby="emailHelp">
+            </div>
+            <button type="submit" class="btn btn-primary"
+              style="background-color: rgb(55, 175, 55);border: none;">Save</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="column right">
+      <div class="card  mb-3">
+        <div class="card-body">
+          <h2>Your notes</h2><br>
+          <!-- condition to check if notes available in db or not -->
+          {% if newDocs is defined and newDocs|length == 0 %}
+          <div class="alert alert-danger" role="alert">
+            No notes to display, please add a note!!
+          </div>
+          {% endif %}
+
+          <!-- Show notes -->
+          {% for item in newDocs %}
+          <div id="noteCard" class="card  mb-3" >
+            <div class="card-body">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">{{ item.desc }}</p>
+            </div>
+          </div>
+          {% endfor %}
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- BODY ELEMENTS END -->
+
+
+
+
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
